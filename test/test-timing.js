@@ -1,4 +1,5 @@
 var test = require('tape')
+var after = require('after')
 var rangeInterval = require('../')
 
 function now() {
@@ -19,8 +20,10 @@ test('assertDuration()', function (t) {
 })
 
 test('interval timing', function (t) {
-	t.plan(20)
-	;[30, 60, 80, 200].forEach(function (interval) {
+	var tests = [30, 60, 80, 200]
+	t.plan((tests.length * 5) + 1) // t.end asserts once
+	var done = after(tests.length, t.end.bind(t))
+	tests.forEach(function (interval) {
 		var start = now()
 		rangeInterval({
 			start: 1,
@@ -30,8 +33,6 @@ test('interval timing', function (t) {
 		}, function (n) {
 			assertDuration(t, start, interval)
 			start = now()
-		})
+		}, done)
 	})
-
-	setTimeout(t.end.bind(t), 1100)
 })

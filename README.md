@@ -30,6 +30,8 @@ l
 o
 ```
 
+-----
+
 ```js
 var rangeInterval = require('range-interval')
 

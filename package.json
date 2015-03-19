@@ -1,7 +1,7 @@
 {
   "name": "range-interval",
   "description": "Like setInterval but only called x times",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/ArtskydJ/range-interval.git"
   },
@@ -13,6 +13,7 @@
     "xtend": "^4.0.0"
   },
   "devDependencies": {
+    "after": "^0.8.1",
     "tape": "^3.5.0"
   }
 }
