@@ -1,6 +1,8 @@
 # range-interval
 
 [![Build Status](https://travis-ci.org/ArtskydJ/range-interval.svg)](https://travis-ci.org/ArtskydJ/range-interval)
+[![Dependency Status](https://david-dm.org/artskydj/range-interval.svg)](https://david-dm.org/artskydj/range-interval)
+[![devDependency Status](https://david-dm.org/artskydj/range-interval/dev-status.svg)](https://david-dm.org/artskydj/range-interval#info=devDependencies)
 
 Like setInterval but only called x times
 
