@@ -72,7 +72,7 @@ The `each` function is called every `opts.interval` milliseconds. It is passed a
 	- `interval` is the number of ms between each iteration. Optional, defaults to `10`.
 - `each` is a function that is passed the following arguments:
 	- `number` is a number between `opts.start` and `opts.end` that is incremented by `opts.step` each iteration.
-- `cb` is an optional function that is called after every iteration. No arguments are passed to it.
+- `cb` is an optional function that is called after `opts.end` is reached. No arguments are passed to it.
 
 # license
 
