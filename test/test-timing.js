@@ -8,7 +8,7 @@ function now() {
 
 function assertDuration(t, start, expect) {
 	var actual = now() - start
-	var ok = actual < (expect + 20)
+	var ok = actual < (expect + 10)
 	t.ok(ok, '' + actual + ' was not too late, expected ' + expect)
 }
 
@@ -21,8 +21,10 @@ test('assertDuration()', function (t) {
 
 test('interval timing', function (t) {
 	var tests = [30, 60, 80, 200]
-	t.plan((tests.length * 5) + 1) // t.end asserts once
-	var done = after(tests.length, t.end.bind(t))
+	t.plan(tests.length * 5)
+	var done = after(tests.length, function () {
+		t.end()
+	})
 	tests.forEach(function (interval) {
 		var start = now()
 		rangeInterval({

@@ -8,8 +8,8 @@ function roundTenth(n) {
 
 test('ends with a mixed number', function (t) {
 	var tests = [5, 5.1, 5.9]
-	t.plan(tests.length + 1) // t.end asserts once
-	var done = after(tests.length, t.end.bind(t))
+	t.plan(tests.length)
+	var done = after(tests.length, function () {t.end()})
 	tests.forEach(function (end) {
 		var arr = []
 		rangeInterval({
@@ -41,20 +41,17 @@ test('fractional step', function (t) {
 })
 
 test('different configurations of arguments', function (t) {
-	t.plan(1)
+	t.plan(4)
 	var beforeEnd = true
 	var opts = {}
 	var fail = function () {
 		if (beforeEnd) t.fail('called too soon')
 	}
-	var res = null
+	t.notOk(rangeInterval(fail), 'returns nothing')
+	t.notOk(rangeInterval(opts, fail), 'returns nothing')
+	t.notOk(rangeInterval(fail, fail), 'returns nothing')
+	t.notOk(rangeInterval(opts, fail, fail), 'returns nothing')
 
-	res = rangeInterval(fail) || res
-	res = rangeInterval(opts, fail) || res
-	res = rangeInterval(fail, fail) || res
-	res = rangeInterval(opts, fail, fail) || res
-
-	t.equal(res, null, 'returns nothing')
 	beforeEnd = false
 	t.end()
 })
