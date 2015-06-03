@@ -1,26 +1,16 @@
-var xtend = require('xtend')
-var defaultOpts = {
-	start: 0,
-	end: 100,
-	step: 1,
-	interval: 10
-}
+module.exports = function repeatDelay(opts, each, cb) {
+	if (!opts || typeof opts !== 'object') throw new TypeError('Expected options to be an object.')
+	if (typeof opts.interval !== 'number') throw new TypeError('Expected options.interval to be a number.')
+	if (typeof opts.end !== 'number') throw new TypeError('Expected options.end to be a number.')
 
-// Consider publishing this on npm
-module.exports = function repeatDelay(options, each, cb) {
-	if (typeof options === 'function') {
-		cb = each
-		each = options
-		options = {}
-	}
-	var opts = xtend(defaultOpts, options)
-
-	var n = opts.start
+	var n = opts.start || 0
+	var higher = (n < opts.end)
 	var iv = setInterval(iterate, opts.interval)
+
 	function iterate() {
 		each(n)
-		n += opts.step
-		if (n > opts.end) {
+		n += Math.abs(opts.step || 1) * (higher ? 1 : -1)
+		if (higher ? (n > opts.end) : (n < opts.end)) {
 			clearInterval(iv)
 			cb && cb()
 		}

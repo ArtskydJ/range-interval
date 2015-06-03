@@ -2,6 +2,7 @@
   "name": "range-interval",
   "description": "Like setInterval, but called a configurable number of times",
   "version": "0.1.2",
+  "license": "VOL",
   "repository": {
     "url": "https://github.com/ArtskydJ/range-interval.git"
   },
@@ -9,9 +10,7 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "dependencies": {
-    "xtend": "^4.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "after": "^0.8.1",
     "tape": "^4.0.0"
