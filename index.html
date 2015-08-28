@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Range Interval Demo</title>
+		<link rel="shortcut icon" href="./favicon.ico">
+		<link rel="stylesheet" href="./bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Range Interval Demo</h1>
+			</div>
+			<div class="row">
+				<form class=form-horizontal>
+					<div class="well col-sm-4">
+						<div class="form-group">
+							<label for="inputStart" class="col-sm-4 control-label">Start</label>
+							<div class="col-sm-8">
+								<input type="number" name="start" class="form-control" id="inputStart">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEnd" class="col-sm-4 control-label">End</label>
+							<div class="col-sm-8">
+								<input type="number" name="end" class="form-control" id="inputEnd">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputInterval" class="col-sm-4 control-label">Interval</label>
+							<div class="col-sm-8">
+								<input type="number" name="interval" class="form-control" id="inputInterval">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputStep" class="col-sm-4 control-label">Step</label>
+							<div class="col-sm-8">
+								<input type="number" name="step" class="form-control" id="inputStep">
+							</div>
+						</div>
+					</div>
+					<div class="well col-sm-4">
+						<button type="submit" class="btn btn-primary btn-lg" style="width:100%;">Try Me!</a>
+					</div>
+					<div class="well col-sm-4">
+						<div class="alert alert-default" id="each">
+							Each <span class="badge" id="n"></span>
+						</div>
+						<div class="alert alert-default" id="end">
+							End
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript" src="./bundle.js"></script>
+	</body>
+</html>
+
+<!---
++—————————————————————+   +————————+
+| start    [_______] |    |         |
+| end      [_______] |    | Try Me! |
+| interval [_______] |    |         |
+| step     [_______] |    |         |
++————————————————————+    +—————————+
+
++————————————————————+    +—————————+
+|                    |    |         |
+|        each        |    |   end!  |
+|                    |    |         |
++————————————————————+    +—————————+
+--->
