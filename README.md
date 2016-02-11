@@ -71,6 +71,12 @@ The `each` function is called every `opts.interval` milliseconds. It is passed a
 	- `number` is a number between `opts.start` and `opts.end` that is incremented by `opts.step` each iteration.
 - `cb` is an optional function that is called after `opts.end` is reached. No arguments are passed to it.
 
+# install
+
+Install using [npm](https://nodejs.org/en/download/)
+
+	npm install range-interval
+
 # license
 
 [VOL](http://veryopenlicense.com)
