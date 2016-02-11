@@ -1,15 +1,17 @@
 # range-interval
 
-[![Build Status](https://travis-ci.org/ArtskydJ/range-interval.svg)](https://travis-ci.org/ArtskydJ/range-interval)
-[![Dependency Status](https://david-dm.org/artskydj/range-interval.svg)](https://david-dm.org/artskydj/range-interval)
-[![devDependency Status](https://david-dm.org/artskydj/range-interval/dev-status.svg)](https://david-dm.org/artskydj/range-interval#info=devDependencies)
+> Like setInterval, but called a configurable number of times.
 
-Like setInterval, but called a configurable number of times.
+[![Build Status](https://travis-ci.org/ArtskydJ/range-interval.svg)](https://travis-ci.org/ArtskydJ/range-interval)
+
+# [demo][demo]
+
+[![demo](https://cloud.githubusercontent.com/assets/1833684/12982905/967e7e8a-d0ac-11e5-9584-b2246718eccf.PNG)][demo]
 
 # examples
 
-### *example/example1.js*
 ```js
+// example/example1.js
 var rangeInterval = require('range-interval')
 
 var text = 'hello'
@@ -23,19 +25,16 @@ var opts = {
 rangeInterval(opts, function (index) {
 	console.log(text[index])
 })
-```
-prints
-```
-h
-e
-l
-l
-o
-```
 
-### *example/example2.js*
+// h (printed after 200ms)
+// e (printed after 400ms)
+// l (printed after 600ms)
+// l (printed after 800ms)
+// o (printed after 1000ms)
+```
 
 ```js
+// example/example2.js
 var rangeInterval = require('range-interval')
 
 var text = '0123456789abcdef'
@@ -50,10 +49,7 @@ rangeInterval({
 }, function () {
 	console.log(str)
 })
-```
-prints
-```
-258be
+// 258be (printed after 1000ms)
 ```
 
 # api
@@ -78,3 +74,5 @@ The `each` function is called every `opts.interval` milliseconds. It is passed a
 # license
 
 [VOL](http://veryopenlicense.com)
+
+[demo]: http://artskydj.github.io/range-interval/
