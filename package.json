@@ -2,7 +2,7 @@
   "repository": {
     "url": "https://github.com/ArtskydJ/lmnpmtfy.git"
   },
-  "main": "index.js",
+  "main": "_src.js",
   "scripts": {
     "build": "browserify . | uglifyjs - -m -o ./bundle.js",
     "watch": "watchify . -d -o ./bundle.js"
