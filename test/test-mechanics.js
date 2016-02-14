@@ -8,7 +8,7 @@ function roundTenth(n) {
 function noop() {}
 
 test('ends with a mixed number', function (t) {
-	var tests = [5, 5.1, 5.9]
+	var tests = [ 5, 5.1, 5.9 ]
 	t.plan(tests.length)
 	var done = after(tests.length, function () {t.end()})
 	tests.forEach(function (end) {
@@ -19,7 +19,7 @@ test('ends with a mixed number', function (t) {
 			step: 1,
 			interval: 0
 		}, arr.push.bind(arr), function () {
-			t.deepEqual(arr, [1, 2, 3, 4, 5], 'numbers look good')
+			t.deepEqual(arr, [ 1, 2, 3, 4, 5 ])
 			done()
 		})
 	})
@@ -36,28 +36,18 @@ test('fractional step', function (t) {
 	}, function (n) {
 		arr.push(roundTenth(n))
 	}, function () {
-		t.deepEqual([0, 0.4, 0.8, 1.2, 1.6, 2], arr, 'numbers look good')
+		t.deepEqual([ 0, 0.4, 0.8, 1.2, 1.6, 2 ], arr)
 		t.end()
 	})
 })
 
 test('different configurations of arguments', function (t) {
-	function noop() {}
-	var badOpts1 = {}
-	var badOpts2 = {}
-	var goodOpts = {
-		interval: 1,
-		end: 2
-	}
-	t.throws(      rangeInterval.bind(null, badOpts1, noop))
-	t.throws(      rangeInterval.bind(null, badOpts1, noop, noop))
-	t.throws(      rangeInterval.bind(null, badOpts2, noop))
-	t.throws(      rangeInterval.bind(null, badOpts2, noop, noop))
-	t.doesNotThrow(rangeInterval.bind(null, goodOpts, noop))
-	t.doesNotThrow(rangeInterval.bind(null, goodOpts, noop, noop))
-	t.throws(      rangeInterval.bind(null, { interval: 1 }, noop))
-	t.throws(      rangeInterval.bind(null, { end: 1 }, noop))
-
+	t.throws(rangeInterval.bind(null, {}, noop), /options\.interval/)
+	t.throws(rangeInterval.bind(null, {}, noop, noop), /options\.interval/)
+	t.throws(rangeInterval.bind(null, { interval: 1 }, noop), /options\.end/)
+	t.throws(rangeInterval.bind(null, { end: 1 }, noop), /options\.interval/)
+	t.doesNotThrow(rangeInterval.bind(null, { interval: 1, end: 2 }, noop))
+	t.doesNotThrow(rangeInterval.bind(null, { interval: 1, end: 2 }, noop, noop))
 	t.end()
 })
 
@@ -70,26 +60,20 @@ test('negative step', function (t) {
 		step: -1,
 		interval: 10
 	}, arr.push.bind(arr), function () {
-		t.deepEqual([0, -1, -2, -3, -4, -5], arr, 'numbers look good')
+		t.deepEqual([ 0, -1, -2, -3, -4, -5 ], arr)
 		t.end()
 	})
 })
 
-test('step sign mixup', function (t) {
-	t.plan(6)
-	var done = after(2, function () { t.end() })
-	rangeInterval({
-		start: 0,
-		step: 1,
-		end: -2,
-		interval: 1
-	}, t.pass.bind(t, 'pass'), done)
-	rangeInterval({
-		start: 0,
-		step: -1,
-		end: 2,
-		interval: 1
-	}, t.pass.bind(t, 'pass'), done)
+test('step/end combos', function (t) {
+	t.throws(rangeInterval.bind(null, { start: 0, step: 1, end: -2, interval: 1 }, noop), /options\.step.+diverge/)
+	t.throws(rangeInterval.bind(null, { start: 0, end: -2, interval: 1 }, noop), /options\.step.+diverge/)
+	t.throws(rangeInterval.bind(null, { step: 0, end: 1, interval: 1 }, noop), /options\.step.+0/)
+	t.throws(rangeInterval.bind(null, { start: 0, step: -1, end: 2, interval: 1 }, noop), /options\.step.+diverge/)
+	t.throws(rangeInterval.bind(null, { start: 4, step: -1, end: 4, interval: 1 }, noop), /must not equal/)
+	t.throws(rangeInterval.bind(null, { start: 4, step: 1, end: 4, interval: 1 }, noop), /must not equal/)
+	t.doesNotThrow(rangeInterval.bind(null, { start: 6, step: -1, end: 2, interval: 1 }, noop))
+	t.end()
 })
 
 test('cb called after', function (t) {
@@ -114,10 +98,25 @@ test('defaults', function (t) {
 	t.plan(1)
 	var arr = []
 	rangeInterval({
+		step: -1,
 		end: -2,
 		interval: 3
 	}, arr.push.bind(arr), function () {
-		t.deepEqual([0, -1, -2], arr)
+		t.deepEqual([ 0, -1, -2 ], arr)
+		t.end()
+	})
+})
+
+test('pass through zero', function (t) {
+	t.plan(1)
+	var arr = []
+	rangeInterval({
+		start: 9,
+		end: -4,
+		step: -2,
+		interval: 10
+	}, arr.push.bind(arr), function () {
+		t.deepEqual([ 9, 7, 5, 3, 1, -1, -3 ], arr)
 		t.end()
 	})
 })
