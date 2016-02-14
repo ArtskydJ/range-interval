@@ -2,7 +2,7 @@
   "name": "range-interval",
   "description": "Like setInterval, but called a configurable number of times",
   "author": "Joseph Dykstra",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "repository": {
     "url": "https://github.com/ArtskydJ/range-interval.git"
