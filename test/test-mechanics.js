@@ -1,5 +1,4 @@
 var test = require('tape')
-var after = require('after')
 var rangeInterval = require('../')
 
 function roundTenth(n) {
@@ -7,11 +6,8 @@ function roundTenth(n) {
 }
 function noop() {}
 
-test('ends with a mixed number', function (t) {
-	var tests = [ 5, 5.1, 5.9 ]
-	t.plan(tests.length)
-	var done = after(tests.length, function () {t.end()})
-	tests.forEach(function (end) {
+;[ 5, 5.1, 5.9 ].forEach(function (end, i) {
+	test('floating point end number' + (i + 1),function (t) {
 		var arr = []
 		rangeInterval({
 			start: 1,
@@ -20,7 +16,7 @@ test('ends with a mixed number', function (t) {
 			interval: 0
 		}, arr.push.bind(arr), function () {
 			t.deepEqual(arr, [ 1, 2, 3, 4, 5 ])
-			done()
+			t.end()
 		})
 	})
 })

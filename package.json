@@ -1,8 +1,9 @@
 {
   "name": "range-interval",
   "description": "Like setInterval, but called a configurable number of times",
+  "author": "Joseph Dykstra",
   "version": "2.0.0",
-  "license": "VOL",
+  "license": "MIT",
   "repository": {
     "url": "https://github.com/ArtskydJ/range-interval.git"
   },
@@ -12,7 +13,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "after": "^0.8.1",
     "tape": "^4.0.0"
   }
 }

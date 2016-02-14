@@ -79,6 +79,6 @@ Install using [npm](https://nodejs.org/en/download/)
 
 # license
 
-[VOL](http://veryopenlicense.com)
+[MIT](http://mit-license.org/)
 
 [demo]: http://artskydj.github.io/range-interval/
